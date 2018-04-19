@@ -3,95 +3,88 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginLeft="80dp"
+    android:layout_marginRight="80dp"
     tools:context="com.example.lenovo.oms_android.MainActivity">
 
 
     <EditText
         android:id="@+id/id"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginEnd="72dp"
-        android:layout_marginTop="182dp"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:autoText="false"
         android:ems="10"
+        android:hint="                   用户名"
         android:inputType="textPersonName"
+        android:selectAllOnFocus="false"
+        android:singleLine="false"
+        android:textAlignment="viewStart"
+        android:textColorLink="@android:color/holo_blue_light"
+        android:textSelectHandle="@android:color/holo_blue_light"
         tools:layout_editor_absoluteX="84dp"
         tools:layout_editor_absoluteY="150dp" />
 
     <EditText
         android:id="@+id/pass"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/id"
+        android:layout_alignParentStart="true"
         android:layout_below="@+id/id"
-        android:layout_marginTop="29dp"
+        android:layout_marginTop="15dp"
         android:ems="10"
-        android:inputType="textPassword" />
-
-    <Button
-        android:id="@+id/sign"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/pass"
-        android:layout_below="@+id/pass"
-        android:layout_marginTop="35dp"
-        android:text="新用户" />
+        android:hint="                     密码"
+        android:inputType="textPassword"
+        android:selectAllOnFocus="false"
+        android:textAlignment="viewStart"
+        android:textColorLink="@android:color/holo_blue_light" />
 
     <Button
         android:id="@+id/login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/pass"
-        android:layout_alignTop="@+id/sign"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="match_parent"
 
-        android:text="登录"
-        android:textColor="@android:color/background_dark" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/id"
-        android:layout_marginBottom="11dp"
-        android:layout_marginEnd="15dp"
-        android:layout_toStartOf="@+id/id"
-        android:text="账号：" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/textView"
-        android:layout_alignTop="@+id/pass"
-        android:layout_marginTop="11dp"
-        android:text="密码：" />
+        android:layout_above="@+id/sign"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@android:color/holo_blue_light"
+        android:text="登录" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="89dp"
-        android:layout_toStartOf="@+id/login"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
         android:text="Welcome" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/login_spinner"
-        android:layout_alignStart="@+id/textView2"
-        android:text="角色：" />
 
     <Spinner
         android:id="@+id/login_spinner"
         android:layout_width="210dp"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/login"
-        android:layout_alignStart="@+id/sign"
-        android:layout_centerInParent="false"
-        android:dropDownWidth="match_parent" />
+        android:layout_below="@+id/pass"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="?android:attr/windowOverscan"
+        android:layout_marginTop="23dp"
+        android:backgroundTint="@android:color/holo_blue_dark"
+        android:dropDownWidth="match_parent"
+        android:spinnerMode="dialog" />
+
+    <Button
+        android:id="@+id/sign"
+        style="@android:style/Widget.DeviceDefault.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:background="@android:color/white"
+        android:text="新用户"
+        android:textColor="@android:color/holo_blue_light"
+        android:textColorLink="@android:color/background_light" />
 
 
 </RelativeLayout>
