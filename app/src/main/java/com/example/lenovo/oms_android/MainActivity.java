@@ -61,8 +61,7 @@ public class MainActivity extends AppCompatActivity {
                             it.putExtra("role",spinner.getSelectedItem().toString());
                             startActivityForResult(it, 1);
                         }
-                        else
-                            Toast.makeText(getApplicationContext(),"登录失败", Toast.LENGTH_SHORT).show();
+
                     }
                 }).start();
 

@@ -25,6 +25,8 @@ public class UserMainUiActivity extends AppCompatActivity implements RadioGroup.
     private MyTaskFragment  fg2;
     private TextView textView;
 
+
+
     String id;
     String role;
 
@@ -38,7 +40,10 @@ public class UserMainUiActivity extends AppCompatActivity implements RadioGroup.
         my_task = (RadioButton)findViewById(R.id.my_task_menu);
         my_info = (RadioButton)findViewById(R.id.my_info_menu);
         textView=findViewById(R.id.txt_topbar);
-
+        Intent it=this.getIntent();
+        Bundle bundle=it.getExtras();
+        id=bundle.getString("userid");
+        role=bundle.getString("role");
 
         bindView();
     }
@@ -68,6 +73,8 @@ public class UserMainUiActivity extends AppCompatActivity implements RadioGroup.
             case R.id.all_tasks_menu:
                 if(fg1==null){
                     fg1 = new AllTasksFragment();
+                    fg1.getProjects();
+                    fg1.setActivity(this);
                     transaction.add(R.id.fragment_container,fg1);
                 }else{
                     transaction.show(fg1);
@@ -77,6 +84,7 @@ public class UserMainUiActivity extends AppCompatActivity implements RadioGroup.
             case R.id.my_task_menu:
                 if(fg2==null){
                     fg2 = new MyTaskFragment();
+                    fg2.setActivity(this);
                     transaction.add(R.id.fragment_container,fg2);
                 }else{
                     transaction.show(fg2);
@@ -86,6 +94,11 @@ public class UserMainUiActivity extends AppCompatActivity implements RadioGroup.
             case R.id.my_info_menu:
                 if(fg3==null){
                     fg3 = new UserInfoFragment();
+                    Bundle bundle=new Bundle();
+                    bundle.putString("id",id);
+                    bundle.putString("role",role);
+                    fg3.setBundle(bundle);
+                    fg3.setActivity(this);
                     transaction.add(R.id.fragment_container,fg3);
                 }else{
                     transaction.show(fg3);
@@ -96,5 +109,6 @@ public class UserMainUiActivity extends AppCompatActivity implements RadioGroup.
         }
         transaction.commit();
     }
+
 
 }
