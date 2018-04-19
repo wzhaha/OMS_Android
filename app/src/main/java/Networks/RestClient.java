@@ -1,12 +1,24 @@
 package Networks;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.Reader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Arrays;
+import java.util.List;
 
 import Entity.LoginAction;
+import Entity.ProjectItem;
 import Entity.UserItem;
 import Util.JsonChangeStrUtil;
 
@@ -108,6 +120,41 @@ public class RestClient {
             e.printStackTrace();
         }
         return result;
+    }
+    //获取项目
+    public List<ProjectItem> getProjects() throws IOException, InstantiationException {
+        // check token
+        if (token == null) {
+            return null;
+        }
+        Gson gson = new Gson();
+        String data = getStrFromUri(base_URI + "projects");
+        JsonParser parser = new JsonParser();
+        JsonObject obj = parser.parse(data).getAsJsonObject();
+        JsonArray project = obj.get("_embedded").getAsJsonObject().get("project").getAsJsonArray();
+        ProjectItem[] pt = gson.fromJson(project, ProjectItem[].class);
+
+        return Arrays.asList(pt);
+    }
+
+    private static String getStrFromUri (String uri) throws IOException {
+        URL url = new URL(uri);
+        HttpURLConnection uc = (HttpURLConnection) url.openConnection();
+        uc.setDoInput(true);
+        uc.setDoOutput(true);
+        uc.setRequestProperty("Charset", "UTF-8");
+        uc.setRequestProperty("Content-Type", "application/json");
+        uc.setRequestProperty("Accept", "application/json");
+        uc.setRequestProperty("Authorization", getInstance().token);
+        InputStream raw = uc.getInputStream();
+        InputStream buffer = new BufferedInputStream(raw);
+        Reader r = new InputStreamReader(buffer);
+        int c;
+        StringBuilder body = new StringBuilder();
+        while ((c = r.read()) != -1) {
+            body.append((char) c);
+        }
+        return body.toString();
     }
 
 }
