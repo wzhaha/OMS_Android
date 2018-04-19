@@ -50,14 +50,14 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(),"请输入账号密码", Toast.LENGTH_SHORT).show();
                         }
                         else {
-                            LoginAction lognin=new LoginAction(id.getText().toString(),pass.getText().toString(),"face");
+                            LoginAction lognin=new LoginAction(id.getText().toString(),pass.getText().toString(),"");
                             try {
                                 responce= RestClient.getInstance().login(lognin);
                             }catch (Exception e){
                                 e.printStackTrace();
                             }
                         }
-                        if(responce==200){
+                        if(responce==201){
                             Intent it = new Intent(MainActivity.this, UserMainUiActivity.class);
                             it.putExtra("userid", id.getText().toString());
                             it.putExtra("role",spinner.getSelectedItem().toString());
