@@ -14,6 +14,9 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import Entity.LoginAction;
+import Networks.RestClient;
+
 public class MainActivity extends AppCompatActivity {
     private EditText id;
     private EditText pass;
@@ -39,14 +42,34 @@ public class MainActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(id.getText().toString().equals("haha")&&pass.getText().toString().equals("111")) {
-                    Intent it = new Intent(MainActivity.this, UserMainUiActivity.class);
-                    it.putExtra("userid", id.getText().toString());
-                    it.putExtra("role",spinner.getSelectedItem().toString());
-                    startActivityForResult(it, 1);
-                }
-                else
-                    Toast.makeText(getApplicationContext(),"账号或密码错误", Toast.LENGTH_SHORT).show();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        int responce=0;
+                        if(id.getText().toString().equals("")||pass.getText().toString().equals("")) {
+                            Toast.makeText(getApplicationContext(),"请输入账号密码", Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            LoginAction lognin=new LoginAction(id.getText().toString(),pass.getText().toString(),"face");
+                            try {
+                                responce= RestClient.getInstance().login(lognin);
+                            }catch (Exception e){
+                                e.printStackTrace();
+                            }
+                        }
+                        if(responce==200){
+                            Intent it = new Intent(MainActivity.this, UserMainUiActivity.class);
+                            it.putExtra("userid", id.getText().toString());
+                            it.putExtra("role",spinner.getSelectedItem().toString());
+                            startActivityForResult(it, 1);
+                        }
+                        else
+                            Toast.makeText(getApplicationContext(),"登录失败", Toast.LENGTH_SHORT).show();
+
+
+                    }
+                }).start();
+
             }
         });
         //注册活动跳转

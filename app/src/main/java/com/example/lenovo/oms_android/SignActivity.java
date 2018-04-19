@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Entity.UserItem;
+import Networks.RestClient;
 
 /**
  * Created by lenovo on 2018/4/19.
@@ -50,27 +51,34 @@ public class SignActivity extends AppCompatActivity {
         sign.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(id.getText().toString().equals(""))
-                    Toast.makeText(getApplicationContext(),"请输入用户名",Toast.LENGTH_SHORT).show();
-                else if(pass.getText().toString().equals(""))
-                    Toast.makeText(getApplicationContext(),"请输入密码",Toast.LENGTH_SHORT).show();
-                else if (pass.getText().toString().equals(ensurePass.getText().toString())) {
-                    String role=(String)spinner.getSelectedItem();
-                    String userRole=null;
-                    switch (role){
-                        case "发布者":
-                            userRole="1";
-                            break;
-                        case "开发者":
-                            userRole="2";
-                            break;
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(id.getText().toString().equals(""))
+                            Toast.makeText(getApplicationContext(),"请输入用户名",Toast.LENGTH_SHORT).show();
+                        else if(pass.getText().toString().equals(""))
+                            Toast.makeText(getApplicationContext(),"请输入密码",Toast.LENGTH_SHORT).show();
+                        else if (pass.getText().toString().equals(ensurePass.getText().toString())) {
+                            String role=(String)spinner.getSelectedItem();
+                            String userRole=null;
+                            switch (role){
+                                case "发布者":
+                                    userRole="1";
+                                    break;
+                                case "开发者":
+                                    userRole="2";
+                                    break;
+                            }
+                            UserItem user=new UserItem(id.getText().toString(),pass.getText().toString(),userRole,"face");
+
+                            RestClient.getInstance().signUp(user);
+                            setResult(2, (new Intent()).putExtra("id", id.getText().toString()));
+                            finish();
+                        }
+                        else
+                            Toast.makeText(getApplicationContext(),"请输入相同密码",Toast.LENGTH_SHORT).show();
                     }
-                    UserItem user=new UserItem(id.getText().toString(),pass.getText().toString(),userRole,"face");
-                    setResult(2, (new Intent()).putExtra("id", id.getText().toString()));
-                    finish();
-                }
-                else
-                    Toast.makeText(getApplicationContext(),"请输入相同密码",Toast.LENGTH_SHORT).show();
+                }).start();
             }
         });
         //点击返回
@@ -84,3 +92,6 @@ public class SignActivity extends AppCompatActivity {
 
     }
 }
+
+
+
