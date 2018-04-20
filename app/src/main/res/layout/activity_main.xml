@@ -11,16 +11,19 @@
         android:id="@+id/imageView3"
         android:layout_width="wrap_content"
         android:layout_height="245dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         app:srcCompat="@mipmap/test" />
 
     <EditText
         android:id="@+id/id"
         android:layout_width="wrap_content"
-        android:layout_height="270dp"
-        android:layout_alignParentEnd="true"
+        android:layout_height="wrap_content"
 
-        android:layout_marginEnd="64dp"
+        android:layout_below="@+id/imageView3"
+        android:layout_centerHorizontal="true"
         android:ems="10"
+        android:hint="                  用户名"
         android:inputType="textPersonName"
         tools:layout_editor_absoluteX="84dp"
         tools:layout_editor_absoluteY="150dp" />
@@ -32,53 +35,36 @@
         android:layout_alignStart="@+id/id"
         android:layout_below="@+id/id"
         android:ems="10"
+        android:hint="                    密码"
         android:inputType="textPassword" />
 
     <Button
         android:id="@+id/sign"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/login_spinner"
-        android:layout_below="@+id/login_spinner"
-        android:text="新用户" />
+        android:layout_below="@+id/login"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="83dp"
+        android:layout_marginRight="83dp"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/background_light"
+        android:text="新用户"
+        android:textColor="@android:color/holo_blue_light"
+        android:textColorLink="@android:color/holo_blue_bright" />
 
     <Button
         android:id="@+id/login"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:layout_alignBaseline="@+id/sign"
-        android:layout_alignBottom="@+id/sign"
-        android:layout_alignEnd="@+id/pass"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/login_spinner"
+        android:layout_marginLeft="83dp"
+        android:layout_marginRight="83dp"
+        android:layout_marginTop="17dp"
+        android:background="@android:color/holo_blue_light"
         android:text="登录"
-        android:textColor="@android:color/background_dark" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/id"
-        android:layout_marginBottom="11dp"
-        android:layout_marginEnd="15dp"
-        android:layout_toStartOf="@+id/id"
-        android:text="账号：" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/textView"
-        android:layout_alignTop="@+id/pass"
-        android:layout_marginTop="11dp"
-        android:text="密码：" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/login_spinner"
-        android:layout_alignStart="@+id/textView2"
-        android:text="角色：" />
+        android:textColor="@android:color/background_light" />
 
     <Spinner
         android:id="@+id/login_spinner"
