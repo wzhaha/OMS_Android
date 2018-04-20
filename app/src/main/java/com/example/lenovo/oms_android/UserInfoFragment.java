@@ -19,6 +19,7 @@ public class UserInfoFragment extends Fragment {
     private  String id=null;
     private  String role=null;
     private Button logout;
+    private Button modpwd;
     UserMainUiActivity userMainUiActivity;
     public UserInfoFragment(){
     }
@@ -38,6 +39,8 @@ public class UserInfoFragment extends Fragment {
         user_role=view.findViewById(R.id.user_info_role);
         email=view.findViewById(R.id.tv_email);
         logout=view.findViewById(R.id.btn_logOut);
+        modpwd=view.findViewById(R.id.btn_modPwd);
+        //退出登录事件
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -45,6 +48,16 @@ public class UserInfoFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+        //修改密码事件
+        modpwd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(userMainUiActivity,ModifyActivity.class);
+                startActivity(intent);
+            }
+        });
+
         //set user info
         user_id.setText(id);
         user_role.setText(role);
