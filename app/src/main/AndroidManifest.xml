@@ -23,6 +23,7 @@
             android:label="注册"/>
 
         <activity android:name=".ProjectInfoActivity"/>
+        <activity android:name=".ModifyActivity"/>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
