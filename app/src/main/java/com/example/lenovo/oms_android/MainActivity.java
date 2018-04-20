@@ -49,12 +49,12 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         int responce=0;
-//                            LoginAction lognin=new LoginAction(id.getText().toString(),pass.getText().toString(),"");
-//                            try {
-//                                responce= RestClient.getInstance().login(lognin);
-//                            }catch (Exception e){
-//                                e.printStackTrace();
-//                            }
+                            LoginAction lognin=new LoginAction(id.getText().toString(),pass.getText().toString(),"");
+                            try {
+                                responce= RestClient.getInstance().login(lognin);
+                            }catch (Exception e){
+                                e.printStackTrace();
+                            }
                         if(responce==200){
                             Intent it = new Intent(MainActivity.this, UserMainUiActivity.class);
                             it.putExtra("userid", id.getText().toString());
